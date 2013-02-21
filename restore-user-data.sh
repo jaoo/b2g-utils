@@ -37,9 +37,9 @@ $ADB push $BACKUP_DIR/data/local/indexedDB /data/local/indexedDB 1>/dev/null 2>&
 $ADB push $BACKUP_DIR/data/local/permissions.sqlite /data/local/ 1>/dev/null 2>&1
 $ADB push $BACKUP_DIR/data/local/webapps /data/local/webapps 1>/dev/null 2>&1
 
-#if [ -d $TMP_DIR/sdcard/media ]; then
-#  $ADB push $TMP_DIR/sdcard/media /sdcard/ 1>/dev/null 2>&1
-#fi
+if [ -d $BACKUP_DIR/sdcard/media ]; then
+  $ADB push $BACKUP_DIR/sdcard/media /sdcard/media 1>/dev/null 2>&1
+fi
 
 echo Restarting B2G
 $ADB shell stop b2g
