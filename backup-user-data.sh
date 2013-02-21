@@ -5,7 +5,7 @@ TMP_DIR=/tmp/b2g-user-data-backup
 
 rm -rf $TMP_DIR
 
-mkdir -p $TMP_DIR/data/b2g/
+mkdir -p $TMP_DIR/data/b2g
 mkdir -p $TMP_DIR/data/local/indexedDB
 mkdir -p $TMP_DIR/data/local/webapps
 
@@ -17,6 +17,6 @@ $ADB pull /data/local/webapps $TMP_DIR/data/local/webapps/ 1>/dev/null 2>&1
 
 MEDIA_DIR=$(adb shell ls /sdcard/ | grep media)
 if [ $MEDIA_DIR ]; then
-  mkdir -p $TMP_DIR/sdcard/media/
+  mkdir -p $TMP_DIR/sdcard/media
   $ADB pull /sdcard/media $TMP_DIR/sdcard/media/ 1>/dev/null 2>&1
 fi
