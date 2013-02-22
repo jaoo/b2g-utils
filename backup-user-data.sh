@@ -1,9 +1,16 @@
 #!/bin/bash
+# Backup profile and user data.
 
 ADB=${ADB:-adb}
-TMP_DIR=/tmp/b2g-user-data-backup
+TIME=`date +"%Y-%m-%d_%H%M%S"`
+TMP_DIR=/tmp/b2g-user-data-backup-$TIME
 
-rm -rf $TMP_DIR
+if [ ! -f "`which \"$ADB\"`" ]; then
+  echo "\'adb\' tool not found, cannot update. Abort."
+  exit -1
+fi
+
+set -x
 
 mkdir -p $TMP_DIR/data/b2g
 mkdir -p $TMP_DIR/data/local/indexedDB
@@ -20,3 +27,5 @@ if [ $MEDIA_DIR ]; then
   mkdir -p $TMP_DIR/sdcard/media
   $ADB pull /sdcard/media $TMP_DIR/sdcard/media/ 1>/dev/null 2>&1
 fi
+
+echo "Done, backup saved at $TMP_DIR"

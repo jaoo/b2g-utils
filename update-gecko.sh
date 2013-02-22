@@ -3,23 +3,23 @@
 ADB=${ADB:-adb}
 
 if [ ! -f "`which \"$ADB\"`" ]; then
-        echo adb tool not found, can\'t update
-	exit -1
+  echo "adb tool not found, cannot update. Abort."
+  exit -1
 fi
 
 echo_abort()
 {
-        echo "Need to provide b2g-XX.X.en-US.android-arm.tar.gz file. Abort."
+  echo "Need to provide b2g-XX.X.en-US.android-arm.tar.gz file. Abort."
 }
 
 run_adb()
 {
-	$ADB $@
+  $ADB $@
 }
 
 if [ $# -eq 0 ]; then
-       echo_abort
-       exit -1
+  echo_abort
+  exit -1
 fi
 
 # Delete files in the device's /system/b2g that aren't in
